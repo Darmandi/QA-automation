@@ -21,58 +21,32 @@ public class Asimov {
     driver = new ChromeDriver();
     baseUrl = "https://www.katalon.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-      driver.get("https://fantlab.ru/series14");
-      driver.findElement(By.linkText("А")).click();
-      driver.findElement(By.linkText("Азимов, Айзек")).click();
+    driver.get("https://fantlab.ru");
+    clickOn("А");
+    clickOn("Азимов, Айзек");
   }
 
   @Test
   public void testGoToDetailsAsimovABoysBestFriend() throws Exception {
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Айзек Азимов'])[2]/following::p[2]")).click();
-    driver.findElement(By.linkText("Лучший друг")).click();
-    driver.findElement(By.id("editions-tabs")).click();
-    driver.findElement(By.linkText("подробнее")).click();
-  }
+    clickOn("Лучший друг");
+    gotoDetails();
+    }
 
-  @AfterClass(alwaysRun = true)
+    private void clickOn(String s) {
+        driver.findElement(By.linkText(s)).click();
+    }
+
+    private void gotoDetails() {
+      driver.findElement(By.id("editions-tabs")).click();
+      clickOn("подробнее");
+    }
+
+    @AfterClass(alwaysRun = true)
   public void tearDown() throws Exception {
     driver.quit();
     String verificationErrorString = verificationErrors.toString();
     if (!"".equals(verificationErrorString)) {
       fail(verificationErrorString);
-    }
-  }
-
-  private boolean isElementPresent(By by) {
-    try {
-      driver.findElement(by);
-      return true;
-    } catch (NoSuchElementException e) {
-      return false;
-    }
-  }
-
-  private boolean isAlertPresent() {
-    try {
-      driver.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
-  }
-
-  private String closeAlertAndGetItsText() {
-    try {
-      Alert alert = driver.switchTo().alert();
-      String alertText = alert.getText();
-      if (acceptNextAlert) {
-        alert.accept();
-      } else {
-        alert.dismiss();
-      }
-      return alertText;
-    } finally {
-      acceptNextAlert = true;
     }
   }
 }
