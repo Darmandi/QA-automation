@@ -21,13 +21,13 @@ public class Asimov {
     driver = new ChromeDriver();
     baseUrl = "https://www.katalon.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+      driver.get("https://fantlab.ru/series14");
+      driver.findElement(By.linkText("А")).click();
+      driver.findElement(By.linkText("Азимов, Айзек")).click();
   }
 
   @Test
   public void testGoToDetailsAsimovABoysBestFriend() throws Exception {
-    driver.get("https://fantlab.ru/series14");
-    driver.findElement(By.linkText("А")).click();
-    driver.findElement(By.linkText("Азимов, Айзек")).click();
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Айзек Азимов'])[2]/following::p[2]")).click();
     driver.findElement(By.linkText("Лучший друг")).click();
     driver.findElement(By.id("editions-tabs")).click();
