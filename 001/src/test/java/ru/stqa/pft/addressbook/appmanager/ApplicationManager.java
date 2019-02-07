@@ -29,9 +29,9 @@ public class ApplicationManager {
     public void init() {
         if (browser.equals(BrowserType.FIREFOX)) {
             driver = new FirefoxDriver();
-        } else if(browser.equals(BrowserType.CHROME)) {
+        } else if (browser.equals(BrowserType.CHROME)) {
             driver = new ChromeDriver();
-        } else if(browser.equals(BrowserType.IE)) {
+        } else if (browser.equals(BrowserType.IE)) {
             driver = new InternetExplorerDriver();
         }
         baseUrl = "https://www.katalon.com/";

@@ -6,7 +6,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 public class GroupModificationTest extends  TestBase {
 
     @Test
-    public void testGroupModification() throws Exception{
+    public void testGroupModification() throws Exception {
         app.getNavigationHelper().gotoGroupPage();
         app.getGroupHelper().selectGroup();
         app.getGroupHelper().editSelectedGroups();
